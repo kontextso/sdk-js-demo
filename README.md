@@ -21,7 +21,7 @@ export const PLACEMENT_CODE = "<your placement code>";
 3. Run the development server
 
 ```bash
-npm run start
+npm start
 ```
 
 5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.

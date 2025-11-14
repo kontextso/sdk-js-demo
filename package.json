@@ -6,6 +6,7 @@
     "start": "node server.mjs"
   },
   "dependencies": {
-    "@kontextso/sdk-js": "^1.0.0"
+    "@kontextso/sdk-js": "^1.0.0",
+    "express": "^5.1.0"
   }
 }
