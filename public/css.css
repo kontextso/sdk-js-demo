@@ -1,0 +1,36 @@
+.message{
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.message-role {
+  font-weight: bold;
+}
+
+.message-content {
+  margin-top: 10px;
+}
+
+textarea {
+  width: 50%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+#chat-loader {
+  padding: 10px;
+}

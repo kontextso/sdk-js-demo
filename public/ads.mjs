@@ -45,8 +45,8 @@ const simulateAssistantResponse = () => {
 const updateChatContainer = () => {
   chatContainer.innerHTML = messages.map((message, index) => `
     <div class="message">
-      <div><strong>${message.role}</strong></div>
-      <div>${message.content}</div>
+      <div class="message-role"><strong>${message.role}</strong></div>
+      <div class="message-content">${message.content}</div>
       ${index === messages.length - 1 ? `<div id="ad-container"></div>` : ''}
     </div>
   `).join('');
