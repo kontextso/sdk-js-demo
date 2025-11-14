@@ -1,0 +1,11 @@
+{
+  "name": "sdk-js-demo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "dependencies": {
+    "@kontextso/sdk-js": "^1.0.0"
+  }
+}
