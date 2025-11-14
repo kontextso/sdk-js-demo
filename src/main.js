@@ -1,6 +1,8 @@
-import { fetchAd } from 'https://server.megabrain.co/sdk/js';
-import { PUBLISHER_TOKEN, PLACEMENT_CODE } from './constants.mjs';
-import { getRandomId } from './utils.mjs';
+import './style.css'
+
+import { fetchAd } from '@kontextso/sdk-js';
+import { PUBLISHER_TOKEN, PLACEMENT_CODE } from './constants.js';
+import { getRandomId } from '../src/utils.js';
 
 const messages = [];
 
@@ -52,7 +54,7 @@ const updateChatContainer = () => {
   `).join('');
 }
 
-const generateAd = () => {
+const generateAd = async () => {
   const fetchAdParams = {
     publisherToken: PUBLISHER_TOKEN,
     code: PLACEMENT_CODE,
@@ -61,7 +63,7 @@ const generateAd = () => {
     messages,
     element: document.getElementById("ad-container")
   }
-  fetchAd(fetchAdParams)
+  const response = await fetchAd(fetchAdParams)
 }
 
 const handleForm = () => {

@@ -1,12 +1,17 @@
 {
   "name": "sdk-js-demo",
-  "version": "1.0.0",
   "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "start": "node server.mjs"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^7.2.2"
   },
   "dependencies": {
-    "@kontextso/sdk-js": "^1.0.0",
-    "express": "^5.1.0"
+    "@kontextso/sdk-js": "^0.0.8"
   }
 }
