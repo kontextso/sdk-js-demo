@@ -1,27 +1,19 @@
 import { fetchAd } from 'https://server.megabrain.co/sdk/js';
 import { PUBLISHER_TOKEN, PLACEMENT_CODE } from './constants.mjs';
+import { getRandomId } from './utils.mjs';
 
-const getRandomId = () => Math.random().toString(36).substring(2, 15);
+const messages = [];
 
 const USER_ID = getRandomId();
 const CONVERSATION_ID = getRandomId();
 
-const messages = [];
-
-// handling the chat form
 const chatForm = document.getElementById('chat-form');
 const messageInput = document.getElementById('chat-input');
 const chatContainer = document.getElementById('chat-container');
 const chatLoader = document.getElementById('chat-loader');
 const chatSubmit = document.getElementById('chat-submit');
 
-chatForm.addEventListener('submit', (event) => {
-  event.preventDefault();
-  addUserMessage();
-  simulateAssistantResponse();
-});
-
-const addUserMessage = (message) => {
+const addUserMessage = () => {
   const msg = messageInput.value;
   messageInput.value = '';
   messages.push({
@@ -34,8 +26,8 @@ const addUserMessage = (message) => {
 }
 
 const simulateAssistantResponse = () => {
-  chatSubmit.disabled = true;
   chatLoader.style.display = 'block';
+  chatSubmit.disabled = true;
   setTimeout(() => {
     messages.push({
       id: getRandomId(),
@@ -44,8 +36,8 @@ const simulateAssistantResponse = () => {
       content: 'This is a response from the assistant'
     });
     chatLoader.style.display = 'none';
-    updateChatContainer();
     chatSubmit.disabled = false;
+    updateChatContainer();
     generateAd();
   }, 3000);
 }
@@ -71,3 +63,13 @@ const generateAd = () => {
   }
   fetchAd(fetchAdParams)
 }
+
+const handleForm = () => {
+  chatForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    addUserMessage();
+    simulateAssistantResponse();
+  });
+}
+
+handleForm();
