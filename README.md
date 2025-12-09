@@ -17,6 +17,12 @@ Open `main.js` and update the publisher token:
 export const PUBLISHER_TOKEN = "<your publisher token>";
 ```
 
+Open `index.html` and update the publisher token:
+
+```html
+<script src="https://server.kontext.so/sdk/js?type=global&publisherToken=your-publisher-token>"></script> 
+```
+
 3. Run the development server
 
 ```bash
