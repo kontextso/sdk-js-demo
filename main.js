@@ -1,13 +1,19 @@
-import './style.css'
+const { KontextAds } = window.KontextSdk;
 
-import { fetchAd } from '@kontextso/sdk-js';
-import { PUBLISHER_TOKEN, PLACEMENT_CODE } from './constants.js';
-import { getRandomId } from '../src/utils.js';
+const PUBLISHER_TOKEN = "<your publisher token>";
+
+const USER_ID = 'user-unique-id-123';
+const CONVERSATION_ID = 'conversation-unique-id-123';
 
 const messages = [];
 
-const USER_ID = getRandomId();
-const CONVERSATION_ID = getRandomId();
+const ads = KontextAds()
+
+const session = ads.createSession({
+  publisherToken: PUBLISHER_TOKEN,
+  userId: USER_ID,
+  conversationId: CONVERSATION_ID,
+})
 
 const chatForm = document.getElementById('chat-form');
 const messageInput = document.getElementById('chat-input');
@@ -15,15 +21,22 @@ const chatContainer = document.getElementById('chat-container');
 const chatLoader = document.getElementById('chat-loader');
 const chatSubmit = document.getElementById('chat-submit');
 
+let lastAssistantMessageId = null;
+
+const getRandomId = () => Math.random().toString(36).substring(2, 15);
+
 const addUserMessage = () => {
   const msg = messageInput.value;
   messageInput.value = '';
-  messages.push({
+
+  const message = {
     id: getRandomId(),
-    createdAt: new Date().toISOString(),
+    createdAt: new Date(),
     role: 'user',
     content: msg
-  });
+  }
+  messages.push(message);
+  session.addMessage(message);
   updateChatContainer();
 }
 
@@ -31,17 +44,20 @@ const simulateAssistantResponse = () => {
   chatLoader.style.display = 'block';
   chatSubmit.disabled = true;
   setTimeout(() => {
-    messages.push({
-      id: getRandomId(),
+    lastAssistantMessageId = getRandomId();
+    const message = {
+      id: lastAssistantMessageId,
       createdAt: new Date().toISOString(),
       role: 'assistant',
       content: 'This is a response from the assistant'
-    });
+    }
+    messages.push(message);
+    session.addMessage(message);
     chatLoader.style.display = 'none';
     chatSubmit.disabled = false;
     updateChatContainer();
-    generateAd();
-  }, 3000);
+    renderAd();
+  }, 1);
 }
 
 const updateChatContainer = () => {
@@ -54,16 +70,15 @@ const updateChatContainer = () => {
   `).join('');
 }
 
-const generateAd = async () => {
-  const fetchAdParams = {
-    publisherToken: PUBLISHER_TOKEN,
-    code: PLACEMENT_CODE,
-    userId: USER_ID,
-    conversationId: CONVERSATION_ID,
-    messages,
-    element: document.getElementById("ad-container")
+const renderAd = async () => {
+  const element = document.getElementById('ad-container');
+  if (!element) {
+    return;
   }
-  const response = await fetchAd(fetchAdParams)
+  session.render({
+    messageId: lastAssistantMessageId,
+    element
+  })
 }
 
 const handleForm = () => {

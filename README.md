@@ -11,11 +11,10 @@ cd sdk-js-demo
 
 2. Update your publisher token and placement code.
 
-Open `src/constants.mjs` and replace the placeholders with your actual publisher token and placement code:
+Open `main.js` and update the publisher token:
 
 ```ts
 export const PUBLISHER_TOKEN = "<your publisher token>";
-export const PLACEMENT_CODE = "<your placement code>";
 ```
 
 3. Run the development server
