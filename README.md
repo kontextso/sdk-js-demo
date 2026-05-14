@@ -1,4 +1,4 @@
-This is a simple project that demonstrates how to use the Kontex [JavaScript SDK](https://docs.kontext.so/sdk/js).
+This is a simple project that demonstrates how to use the Kontext [JavaScript SDK](https://docs.kontext.so/sdk/js).
 
 ## Getting Started
 
@@ -9,21 +9,21 @@ git clone git@github.com:kontextso/sdk-js-demo.git
 cd sdk-js-demo
 ```
 
-2. Update your publisher token and placement code.
+2. Install dependencies
 
-Open `main.js` and update the publisher token:
-
-```ts
-export const PUBLISHER_TOKEN = "<your publisher token>";
+```bash
+npm install
 ```
 
-Open `index.html` and update the publisher token:
+3. Set your publisher token
 
-```html
-<script src="https://server.kontext.so/sdk/js?type=global&publisherToken=your-publisher-token>"></script> 
+Open `main.js` and replace the placeholder:
+
+```js
+const PUBLISHER_TOKEN = '<your publisher token>'
 ```
 
-3. Run the development server
+4. Run the development server
 
 ```bash
 npm run dev
