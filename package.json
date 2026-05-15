@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@kontextso/sdk-js": "^4.0.0"
+    "@kontextso/sdk-js": "^4.0.1"
   },
   "devDependencies": {
     "vite": "^7.2.2"
